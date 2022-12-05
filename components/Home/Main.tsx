@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import {isValidMotionProp, motion} from 'framer-motion'
+import {useRouter} from 'next/router'
 import React from 'react'
 
 const images = [
@@ -42,8 +43,17 @@ const HomePage = () => {
 }
 
 const ImageCard = ({keyword}: {keyword: string}) => {
+  const router = useRouter()
+
   return (
-    <Card maxW={'sm'} pos="relative">
+    <Card
+      maxW={'sm'}
+      pos="relative"
+      cursor={'pointer'}
+      onClick={() => {
+        router.push(`/images/${keyword}`)
+      }}
+    >
       <ChakraBox whileHover={{scale: 1.1}}>
         <Image
           objectFit={'cover'}
@@ -57,7 +67,7 @@ const ImageCard = ({keyword}: {keyword: string}) => {
           display={'flex'}
           justifyContent="center"
           //   borderWidth={1}
-          top="45%"
+          top="46%"
           pos={'absolute'}
           color="white"
           fontSize={'large'}
